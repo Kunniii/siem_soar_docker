@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  ### Reverse Proxy
+  traefik:
+    image: traefik:v2.10
+
+  ### SOAR
+  theHive:
+    image: thehiveproject/thehive:3.5.2
+  cortex:
+    image: thehiveproject/cortex:3.1.7-withdeps
+
+  ### SIEM
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.17.0-amd64
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0-amd64
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.0-amd64
+
+  ### BEATs
+  metricbeat:
+    image: docker.elastic.co/beats/metricbeat:7.17.0-amd64
+
+  webserver:
+    # image: nginx:stable-alpine3.17
+    build:
+      context: ./clients/webserver/
+      dockerfile: ./Dockerfile
+    ports:
+      - 80:80
