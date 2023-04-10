@@ -1,0 +1,6 @@
+[submodule "REFERENCES/TheHive_Cortext_Docker_template"]
+	path = REFERENCES/TheHive_Cortext_Docker_template
+	url = git@github.com:TheHive-Project/Docker-Templates.git
+[submodule "REFERENCES/ELK_stack_docker"]
+	path = REFERENCES/ELK_stack_docker
+	url = git@github.com:deviantony/docker-elk.git
