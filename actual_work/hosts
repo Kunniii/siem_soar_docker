@@ -1,0 +1,7 @@
+# BEGIN SIEM SOAR LOCAL
+
+127.0.0.1 thehive.local.host
+127.0.0.1 cortex.local.host
+127.0.0.1 traefik.local.host
+
+# END SIEM SOAR LOCAL
