@@ -1,1 +1,3 @@
 *.help.txt
+cortex_jobs
+.env
