@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  theHive:
+    image: thehiveproject/thehive:3.5.2
+    container_name: thehive
+    command: --cortex-port 9001
+      --cortex-key ${CORTEX_KEY}
+    ports:
+      - 9000:9000
+    networks:
+      - siem_soar
+
+  cortex:
+    image: thehiveproject/cortex:3.1.7
+    container_name: cortex
+    command: --job-directory ${JOB_DIRECTORY}
+    environment:
+      JOB_DIRECTORY: ${JOB_DIRECTORY}
+      START_DOCKER: 1
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./cortex_jobs/:${JOB_DIRECTORY}"
+      - ./confs/cortex/application.conf:/etc/cortex/application.conf
+      - ./confs/cortex/application.conf:/opt/cortex/application.conf
+    ports:
+      - 9001:9001
+    networks:
+      - siem_soar
+
+networks:
+  siem_soar:
+    external: true
